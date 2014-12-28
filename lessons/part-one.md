@@ -1,5 +1,5 @@
 # Create a Baseline Template
-When beginning a project development plan engineers will need to translate the designs to a structure for coding, testing and maintaining the software.  Theses designs provide engineers with the information required to develop a baseline template that facilitates data the project.  We can use the Express tool to accomplish this quickly and apply the best practices for the framework. 
+When beginning a project development plan engineers will need to translate the designs to a structure for developing, testing and maintaining the software.  Theses designs provide engineers with the information required to develop a baseline template that facilitates data for the project.  We can use the Express command-line tool to accomplish this quickly and apply the current best practices.
 
 ## Generating An Express Application
 To do this you need to make sure you have installed Express4 globally, you can refer to earlier tutorials about this.  This requires the use of a command-line console.  Open your console and navigate to the the project workspace folder where you will be saving your project.  Run the following command:
