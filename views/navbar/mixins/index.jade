@@ -1,0 +1,12 @@
+mixin signin()
+  button.btn.btn-default.navbar-btn(type="button", data-toggle="modal" data-target="#login") Sign in
+  
+mixin signedin()
+  p.navbar-text 
+    a.navbar-link(href="/user") #{profile.firstname} #{profile.lastname}
+    |  |  
+    a.navbar-link(href='/user/signout') Sign Out
+    
+mixin register()
+  button.btn.btn-primary.navbar-btn(type="button", data-toggle="modal" data-target="#register") Register
+  

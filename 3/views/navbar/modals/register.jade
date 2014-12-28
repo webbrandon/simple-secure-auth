@@ -1,0 +1,29 @@
+#register.modal.fade(tabindex="-1", role="dialog", aria-labelledby="registerLabel", aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      form#register-form(action='/user/new', method='POST', role='form')
+        .modal-header
+          button.close(type="button", data-dismiss="modal", aria-label="Close")
+            span(aria-hidden="true") &times;
+          h4#registerLabel.modal-title Register Account
+        .modal-body
+          h5 User Name
+          .input-group
+            .input-group-addon User Email
+            input.form-control(name='first', type='input', required)
+          br
+          .input-group
+            .input-group-addon Password &nbsp;
+            input.form-control(name='last', type='input', required)
+          h5 Login Credentials
+          .input-group
+            .input-group-addon User Email
+            input.form-control(name='user', type='email', required)
+          br
+          .input-group
+            .input-group-addon Password &nbsp;
+            input.form-control(name='password', type='password', required)
+          //- You should do an additional retype password validation
+        .modal-footer
+          button.btn.btn-default(type="button", data-dismiss="modal") Cancel
+          button.btn.btn-primary(type="button") Submit

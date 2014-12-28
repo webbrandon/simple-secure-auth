@@ -1,0 +1,19 @@
+#login.modal.fade(tabindex="-1", role="dialog", aria-labelledby="loginLabel", aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      form#login-form(action='/user', method='POST', role='form')
+        .modal-header
+          button.close(type="button", data-dismiss="modal", aria-label="Close")
+            span(aria-hidden="true") &times;
+          h4#loginLabel.modal-title Sign In
+        .modal-body
+          .input-group
+            .input-group-addon User Email
+            input.form-control(name='user', placeholder='', type='email', required)
+          br
+          .input-group
+            .input-group-addon Password &nbsp;
+            input.form-control(name='password', placeholder='', type='password', required)
+        .modal-footer
+          button.btn.btn-default(type="button", data-dismiss="modal") Cancel
+          button.btn.btn-primary(type="submit") Submit
