@@ -16,6 +16,7 @@ To accomplish the goals of this application we need the following user navigatio
   * Create  | New Account
   * Update | Edit Profile
   * Delete  | Remove Profile
+
 In addition:
   * Index      | Homepage
   * Logout   | Forget the signed in user information. 

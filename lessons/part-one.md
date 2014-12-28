@@ -3,6 +3,7 @@ When beginning a project development plan engineers will need to translate the d
 
 ## Generating An Express Application
 To do this you need to make sure you have installed Express4 globally, you can refer to earlier tutorials about this.  This requires the use of a command-line console.  Open your console and navigate to the the project workspace folder where you will be saving your project.  Run the following command:
+
 	[command-line]
 
 ## Defining Structure to Facilitate Data
@@ -19,11 +20,14 @@ To secure system data from things like wiretapping and man-in-the-middle attacks
 
 ### HTTPS for Development and Testing
 When developing and testing an application it is to much trouble and expense to use a registered SSL certificate so we use a generalized replication that resembles the requirements of security goals.  To generate a self signed certificate for development and testing you will need to have OpenSSL installed.  Begin by generating a key and cert file:
+
 	[command-line]
+
 When done we simply load the key and certificate files into our node application and set out HTTPS communication options.
 
 ### HTTPS for Implementation
 Once done with an projects development and testing we need to purchase or register our SSL certificates so our user base isn't driven away by their browsers security warning.  There are several ways to go about obtaining a SSL certificates and some are free to the open source community.  Here is a quick list of whats available:
+
   [list of ssl options]
 
 ### Session Management

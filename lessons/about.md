@@ -35,11 +35,13 @@ with general knowledge of the following:
 ## What do I need to do?
 To engineer this system several software components and libraries will be needed.  Here is 
 a list of development requirements that are needed prior to starting:
+
 **Software**
   * Node.js & NPM
     * Express4 Globally
   * MongoDB
   * OpenSSL
+
 **Javascript Libraries**
   * Bootstrap
   * jQuery

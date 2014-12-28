@@ -1,5 +1,6 @@
 # Node.js Simple & Secure Authentication for User Management
 Author: Brandon L. Clark
+
 Date  : 12/28/2014
 
 ## Table Of Contents
