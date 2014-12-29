@@ -66,8 +66,8 @@ module.exports.deleteUser = function(sess, id, cb){
     db.close();
     if(err){return cb(err, null);}
   
-    delete session.user;
-    session.user = {type: 'guest', firstname: 'Guest', lastname: 'User'};
+    delete sess.user;
+    sess.user = {type: 'guest', firstname: 'Guest', lastname: 'User'};
     return cb(null, data);
   });
 };
