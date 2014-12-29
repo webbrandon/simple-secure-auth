@@ -22,3 +22,17 @@ module.exports.verify = function(userObj, cb){
 			return cb(null, user.getData());
 		});	
 };
+
+
+module.exports.isUser = function(id, cb){
+	User
+		.findOne({_id: id})
+		.exec(function(err, user){
+			if(err){return cb(false);}
+			if(user != undefined){
+				return cb(true);
+			}	else {
+			  return cb(false);
+			}
+		});	
+};

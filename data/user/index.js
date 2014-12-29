@@ -60,12 +60,28 @@ module.exports.updateUser = function(sess, userObj, cb){
   });
 };
 
-module.exports.deleteUser = function(id, cb){
+module.exports.deleteUser = function(sess, id, cb){
   db.open();
   D(id, function(err, data){
     db.close();
     if(err){return cb(err, null);}
   
+    delete session.user;
+    session.user = {type: 'guest', firstname: 'Guest', lastname: 'User'};
     return cb(null, data);
   });
+};
+
+module.exports.grant = function(req, res, next){
+  db.open();
+  R.isUser(req.session.user.id, function(isTrue){
+    db.close();
+    if(isTrue){
+      next();
+    } else {
+      var backURL;
+			backURL=req.header('Referer') || '/';
+			res.redirect(backURL);
+    }
+  }); 
 };

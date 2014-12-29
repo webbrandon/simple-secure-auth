@@ -38,7 +38,7 @@ module.exports = function (data) {
   });
   
   /* Read users authentication listing. */
-  router.get('/', function(req, res) {
+  router.get('/', data.user.grant, function(req, res) {
     data.user.getUser(req.session.user.email, function(err, data){
       if(err){
         console.error(err);
@@ -59,7 +59,7 @@ module.exports = function (data) {
     });
   });
 
-  router.get('/signout', function(req, res) {
+  router.get('/signout', data.user.grant, function(req, res) {
     var sess = req.session;
     
     data.user.signout(sess, function(err, data){
@@ -72,7 +72,7 @@ module.exports = function (data) {
   });
 
   /* Update user. */
-  router.post('/update', function(req, res) {
+  router.post('/update', data.user.grant, function(req, res) {
     var userObj = getUser(req);
     var sess = req.session;
     
@@ -86,7 +86,7 @@ module.exports = function (data) {
   });
 
   /* Delete user. */
-  router.post('/delete', function(req, res) {
+  router.post('/delete', data.user.grant, function(req, res) {
     var id = req.body.id;
     var sess = req.session;
     
