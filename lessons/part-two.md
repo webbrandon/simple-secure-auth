@@ -1,5 +1,5 @@
 # Jade and Bootstrap
-It has become a common practice to use template engines like Jade Template Engine with the Express framework.  Template engines give developers the ability to increase reuse and interact with data.  To increase accessibility and provide stability in a responsive design with cross platform capability the Bootstrap framework can be use.  Using Bootstrap code snips from the framework homepage of it many other code snip sites and tutorials with Jade is quick and easy and can greatly enhance the Bootstrap framework.   
+It has become a common practice to use template engines like Jade Template Engine with the Express framework.  Template engines give developers the ability to increase reuse and interact with data.  To increase accessibility and provide stability in a responsive design with cross platform capability the Bootstrap framework can be use.  Using Bootstrap code snips from the framework homepage of it many other code snip sites and tutorials with Jade is quick and easy and can greatly enhance the Bootstrap framework. 
 
 ## Navbar & Footer Components
 Two of the most important sections users will look for are the navigation bar and footer because they provide the main features of your web application.  Bootstrap provides a great tool-set for creating a responsive navigation and provides you all the code you need.  
@@ -12,12 +12,14 @@ When developing a footer it is good to position it at the bottom of a window.  A
 Now that we have our navigation components setup our Express routes need to be defined.  This is done by deciding what pages and functionalities will be presented in our Jade template.  Since we are building a simple authentication and user management application that is going to be used  with MongoDB we can cover the complete CRUD principle in this guide.  
 
 To accomplish the goals of this application we need the following user navigation items:
+
   * Read    | Sign In
   * Create  | New Account
   * Update | Edit Profile
   * Delete  | Remove Profile
 
 In addition:
+
   * Index      | Homepage
   * Logout   | Forget the signed in user information. 
   * Error      | Something wrong happened! ( no link needed )
