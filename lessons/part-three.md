@@ -25,7 +25,7 @@ Utilizing callback functions helps provide a layer of separation or requirements
 
 Now that everything is in place to create a secured user object expose the application to it.  In the `./data/user/index.js` file create a exports function that will open the database, creates  user object if the email address doesn't exist.  Call this function in the `./routes/user.js` file at the create user route.  
 
-In the example the user session is passed to this request so they are signed in if successful in creating an account but this is not necessary, just remove the `sess` value from being passed and used.  If you decide to keep this functionality it will require the use of the `isUser` exported function discussed in the next section.
+In the example the user session is passed to this request so they are signed in if successful in creating an account but this is not necessary, just remove the `sess` value from being passed and used.  If you decide to keep this functionality it will require the use of the `grant` exported function discussed in the next section.
 
 ## Read & Verify User Object
 Like utilizing callback functions for the creating a user object, do so again with for the read and verify There will be three required functions to begin the authentication process.  First need to verify the user against submitted credentials, then want to create a id check for pages that only the use should see(The point of the authentication process).  Since in the last step of the example sends want to send the user  to their profile you want to make sure the information being edited is current(e. g. An administrator edits their profile.).  In `./data/user/read/index.js` file create three exported functions.
