@@ -1,7 +1,5 @@
 # Node.js Simple & Secure Authentication for User Management
-Author: Brandon L. Clark
-
-[MIT License](LICENSE)
+[MIT License](LICENSE) | Author: Brandon L. Clark
 
 [Lesson Documentation](/lessons/README.md) 
 
