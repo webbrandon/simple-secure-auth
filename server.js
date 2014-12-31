@@ -1,4 +1,4 @@
-var data = require('./data');           // This is where you create a data exchange package for MongoDB with the Mongoose.
+var data = require('./data');           // Package for MongoDB connection with the Mongoose.
 var app = require('./app.js')(data);    // Send the MongoDB exchange package.
 var https = require('https');           // Load HTTPS conection components.
 var http = require('http');             // Load HTTP connection components.
