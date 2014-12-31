@@ -41,12 +41,18 @@ module.exports.signin = function(sess, userObj, cb){
   });
 };
 
-module.exports.signout = function(sess, cb){
-	sess.destroy(function(err){
-		if(err){return cb(err, null);}
-		
-		return cb(null, 'Session Destroyed');
-	});
+module.exports.grant = function(req, res, next){
+  db.open();
+  R.isUser(req.session.user.id, function(isTrue){
+    db.close();
+    if(isTrue){
+      next();
+    } else {
+      var backURL;
+			backURL=req.header('Referer') || '/';
+			res.redirect(backURL);
+    }
+  }); 
 };
 
 module.exports.updateUser = function(sess, userObj, cb){
@@ -60,6 +66,14 @@ module.exports.updateUser = function(sess, userObj, cb){
   });
 };
 
+module.exports.signout = function(sess, cb){
+	sess.destroy(function(err){
+		if(err){return cb(err, null);}
+		
+		return cb(null, 'Session Destroyed');
+	});
+};
+
 module.exports.deleteUser = function(sess, id, cb){
   db.open();
   D(id, function(err, data){
@@ -70,18 +84,4 @@ module.exports.deleteUser = function(sess, id, cb){
     sess.user = {type: 'guest', firstname: 'Guest', lastname: 'User'};
     return cb(null, data);
   });
-};
-
-module.exports.grant = function(req, res, next){
-  db.open();
-  R.isUser(req.session.user.id, function(isTrue){
-    db.close();
-    if(isTrue){
-      next();
-    } else {
-      var backURL;
-			backURL=req.header('Referer') || '/';
-			res.redirect(backURL);
-    }
-  }); 
 };
