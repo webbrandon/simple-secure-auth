@@ -24,7 +24,7 @@ module.exports = function (data) {
   };
 
   /* Create user. */
-  router.post('/new', function(req, res) {
+  router.post('/create', function(req, res) {
     var userObj = getUser(req);
     var sess = req.session;
     
