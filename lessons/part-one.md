@@ -143,7 +143,7 @@ Open `./package.json` to begin defining the project configuration.  Change the s
 ```json
 {
   "name": "simple-secure-auth",
-  "version": "0.0.2",  // When generated == 0.0.1
+  "version": "0.0.2",  /* When generated == 0.0.1 */
   "private": true,
   "scripts": {
     "start": "node server.js"
@@ -174,18 +174,18 @@ In addition this system is specifically designed to work as a CRM so sessions ne
 In `server.js` add a require for `https` and `fs`.  Also create a options object with `key`, `cert`, `requestCert` and `rejectUnauthorized` values.  Also set a new app port `port-ssl` to 3443.  Lastly create a `httpsServer` and bind the port and option object to it. 
 
 ```node
-var data = require('./data');           // MongoDB with the Mongoose.
+var data = require('./data');                // MongoDB with the Mongoose.
 var app = require('./app.js')(data);    // Send the MongoDB exchange package.
-var https = require('https');           // Load HTTPS conection components.
-var http = require('http');             // Load HTTP connection components.
-var fs = require('fs');                 // Read key & certificate.
+var https = require('https');               // Load HTTPS conection components.
+var http = require('http');                  // Load HTTP connection components.
+var fs = require('fs');                        // Read key & certificate.
 
 // Set HTTPS options, key and certificate.
 var options = {
-    key:  fs.readFileSync( /* key file  */ ),
-    cert: fs.readFileSync( /* cert file */ ),
-    requestCert:           /* boolean   */,
-    rejectUnauthorized:    /* boolean   */ 
+    key: fs.readFileSync(  /* key file */  ),
+    cert: fs.readFileSync(  /* cert file */  ),
+    requestCert:                 /* boolean */,
+    rejectUnauthorized:    /* boolean */ 
 };
 
 app.set('port-ssl', process.env.PORT || 3443);
@@ -219,7 +219,7 @@ Lastly we want to make sure people are using the HTTPS connection only.  Some en
 ```node
   // Top of routes. Required to push HTTPS on all routes.
   app.all('*', secure);
-```
+``` 
 
 ### HTTPS for Implementation
 Once done with an projects development and testing we need to purchase or register our SSL/TLS certificates so our user base isn't driven away by their browsers security warning.  There are several ways to go about obtaining a SSL/TLS certificates, some are free to the open source community.  There are two types of SSL/TSL options, trusted and untrusted.  Now and days almost all browsers will identify a self signed certificate as untrusted.  To verifying the systems authenticity a browser will see if a 3rd party services has authenticated the applications host.  
@@ -228,10 +228,10 @@ When you receive certificates from your provide place the files in the `ssl` fol
 
 ```node
 var options = {
-    key:  fs.readFileSync(  './ssl/server.key'  ),
+    key: fs.readFileSync(  './ssl/server.key'  ),
     cert: fs.readFileSync(  './ssl/server.csr'  ),
-    ca:   fs.readFileSync(  './ssl/ca.crt'  ),
-    requestCert: true,
+    ca:     fs.readFileSync(  './ssl/ca.crt'  ),
+    requestCert:             true,
     rejectUnauthorized: true 
 };
 ```
@@ -242,20 +242,20 @@ When developing and testing an application it is to much trouble and expense to 
 To generate a self signed certificate for development and testing you will need to have OpenSSL installed.  Begin by generating a key and certificate:
 
 ```command-line
-$ # Create the Local Key & CSR
-$ openssl req -new -newkey rsa:2048 -nodes -keyout local.key -out local.csr
-$ 
-$ # Self sign server cert. 
-$ openssl x509 -req -days 365 -in local.csr -signkey local.key -out local.crt
+# Create the Local Key & CSR
+openssl req -new -newkey rsa:2048 -nodes -keyout local.key -out local.csr
+
+# Self sign server cert. 
+openssl x509 -req -days 365 -in local.csr -signkey local.key -out local.crt
 ```
 
 Place the generated files in the `ssl` folder created earlier.  Move on to setting the options for your self signed certificate:
 
 ```node
 var options = {
-    key:  fs.readFileSync( './ssl/local.key' ),
-    cert: fs.readFileSync( './ssl/local.csr' ),
-    requestCert: true,
+    key: fs.readFileSync(  './ssl/local.key'  ),
+    cert: fs.readFileSync(  './ssl/local.csr'  ),
+    requestCert:             true,
     rejectUnauthorized: false 
 };
 ```
@@ -263,7 +263,7 @@ var options = {
 ### Session Management
 In order to take advantage of the SSL/TLS connection for user authentication we need to begin using session management.  In this guide we only review the basic implementation of session management but there are further steps that can be taken to gain more information and control of a user sessions such as using the DBMS to track and maintain sessions.
 
-First open the `package.json` file and add the following dependencies:
+First open the `package.json` file and add the following `dependencies`:
 
 ```json
 "express-session": "~1.9.1",
@@ -312,6 +312,6 @@ Just before routes are processed in `app.js` request the `app` to use two functi
 When this is all done start up the command-line terminal and point it to the directory base of the application.  Install the dependencies and launch `server.js` with Node.js to see your first secured work product.  
 
 ```command-line
-$ npm install
-$ node server.js
+npm install
+node server.js
 ```
