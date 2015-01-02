@@ -4,7 +4,7 @@ It has become a common practice to use template engines like Jade Template Engin
 ## Structure & Code
 To begin using the bootstrap framework download and place the framework files in the instructed locations.  In express this is in the `./public` folder.  This means we need to rename our `stylesheet` folder to `css` and `javascript` to `js`.  This also requires the use of the jQuery library, download and place files in `js` folder.
 
-Create a file structure to facilitate general jade code, functionality and object oriented paradigms.  Start by creating several folders in `./views/`.  Create a `navbar`, `footer`, `test` and `user` folder and in each create a `modal` and `mixins` folder include the base of './views`.  In each folder create an `index.jade` file if it doesn't already exist.
+Create a file structure to facilitate general jade code, functionality and object oriented paradigms.  Start by creating several folders in `./views/`.  Create a `navbar`, `footer`, `test` and `user` folder and in each create a `modal` and `mixins` folder include the base of `./views`.  In each folder create an `index.jade` file if it doesn't already exist.
 
 With files in place the structure is now ready for some preparation code such as using Bootstrap and jQuery in the application template.  Open `./mixins/index.jade` to begin creating a `CSS` and `JS` mixin method.  Jade mixins are useful because they allow developers to clump and reuse code segments.  In addition use a block segment to extend the layout to each template file which allows them to include unique Cascading Style Sheets (CSS) and JavaScript files that might not be needed in the global template.
 
@@ -392,7 +392,7 @@ mixin DeleteUser()
       button.btn.btn-danger(type="submit") Delete 
 ``` 
 
-```
+```jade
 // View File: user/index.jade
 extends ../layout
 
