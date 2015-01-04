@@ -1,7 +1,8 @@
-# Create a Baseline Template
+# Section One: Secured Web Connection Template
+## Create a Baseline Template with Express
 When beginning a project development plan engineers will need to translate the designs to a structure for developing, testing and maintaining the software.  Theses designs provide engineers with the information required to develop a baseline template that facilitates data for the project.  We can use the Express command-line tool to accomplish this quickly and apply the current best practices. 
 
-## Generating An Express Application
+## Generating an Express Application
 To do this you need to make sure you have installed Express4 globally, you can refer to earlier tutorials about this.  This requires the use of a command-line console.  Open your console and navigate to the the project workspace folder where you will be saving your project.  Run the following command:
 
 ```command-line
@@ -9,11 +10,11 @@ $ express simple-secure-auth
 ```
 
 ## Defining Structure to Facilitate Data
-In creating maintainable software there is a concept called the fundamentals of formatting.  Key components to this concept are structure and readability.  Structure in terms of code development can mean indentation, object and component separation.  Obtaining readability is done by applying meaningful names to values, functions, files and the logical order of processes that allow one to read line  to line.   When applying the fundamentals of formatting you can also prepare an environment for testing. 
+In creating maintainable software there is a concept called the fundamentals of formatting.  Key components to this concept are structure and readability.  Structure in terms of code development can mean indentation, object and component separation.  Obtaining readability is done by applying meaningful names to values, functions, files and the logical order of processes that allow one to read line to line.   When applying the fundamentals of formatting you can also prepare an environment for testing. 
 
 Before we start working on the functional requirements, facilitate a file structure that helps assist reuse and testing.  In this lesson we choose to separate component code into sub-folders that represent object oriented concepts.
 
-Create a new folders `./data` and `./ssl`. Also create a new file called `./server.js`.  Open and copy the code generated in `./bin/www` to `server.js`.  Once that is done delete the `www` file.  In the new `server.js` file delete the the require for `debug`(change `debug` in listener to `console.log` or `console.info`) and add a require for `http` and `data`.  Since later on a HTTPS connection will be created lets make sure we can easily differentiate the two connection types and name `server` to `httpServer` and replace `app	` in `app.listen` to `http.createServer(app).listen`.
+Create a new folders `./data` and `./ssl`. Also create a new file called `./server.js`.  Open and copy the code generated in `./bin/www` to `server.js`.  Once that is done delete the `www` file.  In the new `server.js` file delete the the require for `debug`(change `debug` in listener to `console.log` or `console.info`) and add a require for `http` and `data`.  Since later on a HTTPS connection will be created let’s make sure we can easily differentiate the two connection types and name `server` to `httpServer` and replace `app	` in `app.listen` to `http.createServer(app).listen`.
 
 ```node
 // File: server.js
@@ -160,8 +161,8 @@ Open `./package.json` to begin defining the project configuration.  Change the s
 }
 ```
 
-## SSL/TLS and Simple Session Management
-To secure system data from things like wiretapping and man-in-the-middle attacks the system needs to initiate use of the Secure Socket Layer (SSL) and Transport Layer Socket (TLS).  By adding the SSL/TLS component to our Hypertext Transfer Protocol (HTTP) we create what is know as HTTPS connection.  SSL/TLS establishes a encrypted link between the user over HTTP.  
+## SSL/TLS and Simple Session Management with Express
+To secure system data from things like wiretapping and man-in-the-middle attacks the system needs to initiate use of the Secure Socket Layer (SSL) and Transport Layer Socket (TLS).  By adding the SSL/TLS component to our Hypertext Transfer Protocol (HTTP) we create what is known as HTTPS connection.  SSL/TLS establishes a encrypted link between the user over HTTP.  
 
 In addition this system is specifically designed to work as a CRM so sessions need to define a registered user from a guest user.  Define the user data model that is going to be applied in the application so we may create a default session for unregistered guest.  This will be a simple object with fields for:
 
@@ -171,13 +172,13 @@ In addition this system is specifically designed to work as a CRM so sessions ne
   * Email
   * Password
 
-In `server.js` add a require for `https` and `fs`.  Also create a options object with `key`, `cert`, `requestCert` and `rejectUnauthorized` values.  Also set a new app port `port-ssl` to 3443.  Lastly create a `httpsServer` and bind the port and option object to it. 
+In `server.js` add a require variable for `https` and `fs`.  Also create a options object with `key`, `cert`, `requestCert` and `rejectUnauthorized` values.  Also set a new app port `port-ssl` to 3443.  Lastly create a `httpsServer` and bind the port and option object to it. 
 
 ```node
-var data = require('./data');           // MongoDB with the Mongoose.
+var data = require('./data');            // MongoDB with the Mongoose.
 var app = require('./app.js')(data);    // Send the MongoDB exchange package.
-var https = require('https');           // Load HTTPS conection components.
-var http = require('http');             // Load HTTP connection components.
+var https = require('https');          // Load HTTPS conection components.
+var http = require('http');              // Load HTTP connection components.
 var fs = require('fs');                 // Read key & certificate.
 
 // Set HTTPS options, key and certificate.
@@ -219,10 +220,10 @@ Lastly we want to make sure people are using the HTTPS connection only.  Some en
 ```node
   // Top of routes. Required to push HTTPS on all routes.
   app.all('*', secure);
-```
+```   
 
 ### HTTPS for Implementation
-Once done with an projects development and testing we need to purchase or register our SSL/TLS certificates so our user base isn't driven away by their browsers security warning.  There are several ways to go about obtaining a SSL/TLS certificates, some are free to the open source community.  There are two types of SSL/TSL options, trusted and untrusted.  Now and days almost all browsers will identify a self signed certificate as untrusted.  To verifying the systems authenticity a browser will see if a 3rd party services has authenticated the applications host.  
+Once done with a projects development and testing we need to purchase or register our SSL/TLS certificates so our user base isn't driven away by their browsers security warning.  There are several ways to go about obtaining a SSL/TLS certificates, some are free to the open source community.  There are two types of SSL/TSL options, trusted and untrusted.  Now and days almost all browsers will identify a self-signed certificate as untrusted.  To verifying the systems authenticity a browser will see if a 3rd party services has authenticated the applications host.  
 
 When you receive certificates from your provide place the files in the `ssl` folder created earlier.  Move forward and set the options for your signed and trusted certificate:
 
@@ -237,9 +238,9 @@ var options = {
 ```
 
 ### HTTPS for Development and Testing
-When developing and testing an application it is to much trouble and expense to use a registered SSL/TLS certificate so we use a generalized replication that resembles the requirements of security goals.  
+When developing and testing an application it is too much trouble and expense to use a registered SSL/TLS certificate so we use a generalized replication that resembles the requirements of security goals.  
 
-To generate a self signed certificate for development and testing you will need to have OpenSSL installed.  Begin by generating a key and certificate:
+To generate a self-signed certificate for development and testing you will need to have OpenSSL installed.  Begin by generating a key and certificate:
 
 ```command-line
 $ # Create the Local Key & CSR
@@ -270,7 +271,7 @@ First open the `package.json` file and add the following `dependencies`:
 "node-uuid": "~1.4.1"
 ```
 
-In the `app.js` file create a require for `session` and `uuid` that were just included into the application configuration.  
+In the `app.js` file create a require variable for `session` and `uuid` that were just included into the application configuration.  
 
 ```node
 var session = require('express-session');

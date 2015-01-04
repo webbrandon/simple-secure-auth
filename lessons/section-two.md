@@ -1,4 +1,5 @@
-# Jade and Bootstrap
+# Section Two: Creating User Interface Requirements
+## Jade and Bootstrap
 It has become a common practice to use template engines like Jade Template Engine with the Express framework.  Template engines give developers the ability to increase reuse and an increased ability to interact with data.  To increase accessibility and provide stability in a responsive design with cross platform capability the Bootstrap framework can be use.  Using Bootstrap code snips from the framework homepage of it many other code snip sites and tutorials with Jade is quick and easy and can greatly enhance the Bootstrap framework.
 
 ## Structure & Code
@@ -80,7 +81,7 @@ html
     +JS()
 ``` 
 
-With the `navbar` component from Bootstrap you have the option of creating a truly responsive user experience between desktop and mobile environments.  Here we will only cover implementing the a basic `navbar` component structure.  If you would like to make your `navbar` even more responsive to the user environment you'll want to use the collapse component (Code provided on Bootstrap homepage).
+With the `navbar` component from Bootstrap you have the option of creating a truly responsive user experience between desktop and mobile environments.  Here we will only cover implementing the basic `navbar` component structure.  If you would like to make your `navbar` even more responsive to the user environment you'll want to use the collapse component (Code provided on Bootstrap homepage).
 
 In the `./views/navbar` folder open the `index.jade` file.  To utilize the `profile` object and make the `navbar` recognize if a user or guest exist for content display decisions.
 
@@ -97,7 +98,7 @@ nav.navbar.navbar-default
         // User navigation here
 ```
 
-When developing a footer it is good to position it at the bottom of a window.  A common mistake is seen on pages with little content in a large view area.  When this happens users see a large blank, non styles section that just seems like a half (I prefer a little more crude word to be used here, a#$) done job.  Bootstrap doesn't have a footer component but it does provide the Affix JavaScript library and some very nice sample code with good footer navigation practices.  We will go ahead and use the sample code they provided.
+When developing a footer it is good to position it at the bottom of a window.  A common mistake is seen on pages with little content in a large view area.  When this happens users see a large blank, non-styles section that just seems like a half (I prefer a little more crude word to be used here, a#$) done job.  Bootstrap doesn't have a footer component but it does provide the Affix JavaScript library and some very nice sample code with good footer navigation practices.  We will go ahead and use the sample code they provided.
 
 This code requires some custom CSS to be inserted in the `styles.css` file.
 
@@ -156,70 +157,14 @@ The footer code consist of a `footer` class and container.
     small.text-muted Copyright by Me!
 ```
 
-Site Navigation
-Now that we have our navigation components setup our Express routes need to be defined.  This is done by deciding what pages and functionalities will be presented in our Jade template.  Since we are building a simple authentication and user management application that is going to be used with MongoDB we can cover the complete CRUD principle in this guide.  
-
-To accomplish the goals of this application we need the following user navigation items:
-  * Read    | Sign In
-  * Create  | New Account
-  * Update  | Edit Profile
-  * Delete  | Remove Profile
-
-In addition:
-  * Index      | Homepage
-  * Logout     | Forget the signed in user information. 
-  * Error      | Something wrong happened! ( no link needed )
-
-This means a route will be needed for a edit profile page in the `./routes/users.js` file.  Instead of pulling a list of users make the default `/` route get the `users/index` view and send the `profile` object created earlier.
-
-```node
-router.get('/', function(req, res) {
-    res.render('user/index', {profile: req.session.user, title:'Edit Profile'});
-});
-```
-
-In the `./navbar` folder edit the `index.jade` and `mixin/index.jade`.  Here put code in place to facilitate the functionalities that are going to be presented to the user.  When signed in the `navbar` will display  allow a user to click their name to view and edit/delete their account and sign-out.
-
-```jade
-// View File: navbar/mixins/index.jade
-mixin signin()
-  button.btn.btn-default.navbar-btn(type="button") Sign in
-  
-mixin signedin()
-  p.navbar-text 
-    a.navbar-link(href="/user") #{profile.firstname} #{profile.lastname}
-    |  |  
-    a.navbar-link(href='/user/signout') Sign Out
-    
-mixin register()
-  button.btn.btn-primary.navbar-btn(type="button") Register
-```
-
-```jade
-// View File: navbar/index.jade
-include ./mixins/index.jade
-
-nav.navbar.navbar-default
-  .container
-    .navbar-header
-      a.navbar-brand(href="/") Simple Secure Auth
-    .navbar-right
-      if profile.type == 'guest'
-        +signin()  
-        |  
-        +register()
-      else
-        +signedin()
-```
-
 ## Site Navigation
 Now that we have our navigation components setup our Express routes need to be defined.  This is done by deciding what pages and functionalities will be presented in our Jade template.  Since we are building a simple authentication and user management application that is going to be used with MongoDB we can cover the complete CRUD principle in this guide.  
 
 To accomplish the goals of this application we need the following user navigation items:
-  * Read    | Sign In
-  * Create  | New Account
-  * Update  | Edit Profile
-  * Delete  | Remove Profile
+  * Sign In
+  * New Account
+  * Edit Profile
+  * Remove Profile
 
 In addition:
   * Index      | Homepage
@@ -234,7 +179,7 @@ router.get('/', function(req, res) {
 });
 ```
 
-In the `./navbar` folder edit the `index.jade` and `mixin/index.jade`.  Here put code in place to facilitate the functionalities that are going to be presented to the user.  When signed in the `navbar` will display  allow a user to click their name to view and edit/delete their account and sign-out.
+In the `./navbar` folder edit the `index.jade` and `mixin/index.jade`.  Here put code in place to facilitate the functionalities that are going to be presented to the user.  When signed in the `navbar` will display allow a user to click their name to view and edit/delete their account and sign-out.
 
 ```jade
 // View File: navbar/mixins/index.jade
@@ -374,10 +319,10 @@ mixin UpdateUser()
     input.form-control(name='id', type='hidden', value=profile.id)
     +username()
     +credential()
-    hr
+    hr      
     p.pull-right
       button.btn.btn-primary(type="submit") Save 
-      | 
+      |  
       button.btn.btn-default(type="button", href='/') Cancel
 
 mixin DeleteUser()
@@ -390,7 +335,7 @@ mixin DeleteUser()
     p  Once you delete your profile it will not be recoverable.
     p.pull-left
       button.btn.btn-danger(type="submit") Delete 
-``` 
+```   
 
 ```jade
 // View File: user/index.jade
